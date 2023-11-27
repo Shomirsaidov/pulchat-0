@@ -2,8 +2,7 @@ import { Inter } from 'next/font/google'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
-import TopTitle from '../components/topBar'
-import Navigator from '../components/navigation'
+import MainContainer from '../components/container'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,13 +21,12 @@ export const getServerSideProps = async() => {
 
 export default function Home({ todos }) {
   return (
-    <>
-        <TopTitle/>
+    <MainContainer>
         <h1 className='text-2xl font-black text-center'>Todos</h1>  
         {
             todos.map(todo => 
                 
-                    <Link href={`post/${todo.id}`}>
+                    <Link href={`posts/${todo.id}`}>
                         <h1 className='text-xl font-bold'>{todo.title}</h1>
                         <br/>
                     </Link>
@@ -36,8 +34,7 @@ export default function Home({ todos }) {
                 ) 
 
         }
-        <Navigator/>
-    </>
+    </MainContainer>
   )
 }
 
